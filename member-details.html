@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="View a member's profile, activity progress, and follow-up items in YLY Follow-Up.">
+  <title>Member Details | YLY Follow-Up</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div class="app-shell">
+    <aside class="sidebar" id="app-sidebar" aria-label="Sidebar" tabindex="-1">
+      <button class="icon-button sidebar-close" id="sidebar-close" type="button" aria-label="Close navigation">&times;</button>
+      <div class="sidebar-header">
+        <img src="assets/images/logo.png" alt="YLY Logo" class="brand-logo">
+        <div class="brand-text">
+          <h2>YLY</h2>
+          <span>Follow-Up</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav" aria-label="Main navigation">
+        <ul class="nav-list">
+          <li>
+            <a class="nav-link" href="index.html">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-link active" href="members.html" aria-current="location">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="8" r="3"/><path d="M3 21v-2a6 6 0 0 1 12 0v2M16 5a3 3 0 0 1 0 6M18 15a5 5 0 0 1 3 4v2"/></svg>
+              <span>Members</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="activities.html">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18m-13 5 3 3 5-5"/></svg>
+              <span>Activities</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="monthly-summary.html">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 3v18h17M9 17v-5m5 5V7m5 10V4"/></svg>
+              <span>Monthly Summary</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="interaction.html">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5H4l-1 1v-8.5A8.5 8.5 0 1 1 21 11.5Z"/><path d="M8 10h8m-8 4h5"/></svg>
+              <span>Interaction</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <p class="sidebar-footer">YLY Follow-Up &middot; Version 1</p>
+      <div class="sidebar-mascot">
+        <img src="assets/images/bello.png" alt="Bello Mascot" class="bello-img">
+        <p>A LITTLE FOLLOW-UP<br>A LOT OF IMPACT ❤️</p>
+      </div>
+    </aside>
+    <div class="sidebar-backdrop" id="sidebar-backdrop" aria-hidden="true" hidden></div>
+
+    <main class="main-content" id="main-content" tabindex="-1" aria-labelledby="profile-name">
+      <header class="top-header profile-page-header">
+          <button class="icon-button menu-toggle" id="menu-toggle" type="button" aria-label="Open navigation" aria-controls="app-sidebar" aria-expanded="false">
+            <span aria-hidden="true">☰</span>
+          </button>
+        <a class="back-link" href="members.html"><span aria-hidden="true">&larr;</span> Back to Members</a>
+      </header>
+      <p class="member-details-error" id="member-details-error" role="alert" hidden></p>
+      <p class="profile-feedback" id="status-notice" role="status" hidden></p>
+
+      <div id="member-details-content" hidden>
+        <header class="profile-header">
+          <div class="profile-avatar" id="profile-initial" aria-hidden="true">?</div>
+          <div class="profile-info">
+            <h1 class="profile-name" id="profile-name">Member Details</h1>
+            <div class="profile-badges">
+              <span class="status-badge committee-badge" id="profile-committee"></span>
+              <span class="status-badge" id="profile-status"></span>
+            </div>
+            <p class="profile-joined-date" id="profile-joined-date"></p>
+          </div>
+          <button class="btn btn-primary" id="edit-member-button" type="button">Edit Member</button>
+        </header>
+
+        <div class="profile-tabs" role="tablist" aria-label="Member details">
+          <button class="profile-tab" id="profile-tab-overview" type="button" role="tab" aria-controls="profile-panel-overview" aria-selected="true" tabindex="0">Overview</button>
+          <button class="profile-tab" id="profile-tab-activities" type="button" role="tab" aria-controls="profile-panel-activities" aria-selected="false" tabindex="-1">Activities</button>
+          <button class="profile-tab" id="profile-tab-interaction" type="button" role="tab" aria-controls="profile-panel-interaction" aria-selected="false" tabindex="-1">Interaction</button>
+        </div>
+
+        <section class="profile-tab-panel" id="profile-panel-overview" role="tabpanel" aria-labelledby="profile-tab-overview" tabindex="0">
+        <div class="dashboard-stats profile-stats" aria-label="Member statistics">
+          <article class="stat-card stat-card--pending" aria-labelledby="total-pending-label">
+            <p class="stat-number" id="total-pending">&mdash;</p>
+            <h2 class="stat-label" id="total-pending-label">Total Pending</h2>
+          </article>
+          <article class="stat-card" aria-labelledby="events-attended-label">
+            <p class="stat-number" id="events-attended">&mdash;</p>
+            <h2 class="stat-label" id="events-attended-label">Events Attended</h2>
+          </article>
+          <article class="stat-card" aria-labelledby="tasks-done-label">
+            <p class="stat-number" id="tasks-done">&mdash;</p>
+            <h2 class="stat-label" id="tasks-done-label">Tasks Done</h2>
+          </article>
+        </div>
+        </section>
+
+        <section class="profile-tab-panel" id="profile-panel-activities" role="tabpanel" aria-labelledby="profile-tab-activities" tabindex="0" hidden>
+          <h2 class="profile-activities-heading" id="member-activities-title">Member Activities</h2>
+          <div class="profile-activity-groups">
+            <section class="profile-activity-group" aria-labelledby="pending-items-title">
+              <div class="profile-group-header">
+                <h3 id="pending-items-title">Pending Items</h3>
+                <span class="profile-group-count" id="pending-count">0</span>
+              </div>
+              <ul class="profile-activity-list" id="member-pending-list"></ul>
+            </section>
+            <section class="profile-activity-group" aria-labelledby="sessions-title">
+              <div class="profile-group-header">
+                <h3 id="sessions-title">Sessions</h3>
+                <span class="profile-group-count" id="sessions-count">0</span>
+              </div>
+              <ul class="profile-activity-list" id="member-sessions-list"></ul>
+            </section>
+            <section class="profile-activity-group" aria-labelledby="events-title">
+              <div class="profile-group-header">
+                <h3 id="events-title">Events</h3>
+                <span class="profile-group-count" id="events-count">0</span>
+              </div>
+              <ul class="profile-activity-list" id="member-events-list"></ul>
+            </section>
+            <section class="profile-activity-group" aria-labelledby="tasks-title">
+              <div class="profile-group-header">
+                <h3 id="tasks-title">Tasks</h3>
+                <span class="profile-group-count" id="tasks-count">0</span>
+              </div>
+              <ul class="profile-activity-list" id="member-tasks-list"></ul>
+            </section>
+          </div>
+        </section>
+
+        <section class="profile-tab-panel" id="profile-panel-interaction" role="tabpanel" aria-labelledby="profile-tab-interaction" tabindex="0" hidden>
+          <div class="member-interaction-toolbar">
+            <div>
+              <h2 class="profile-activities-heading">Member Interaction</h2>
+              <p class="member-interaction-help">Choose a month to view this member's checkpoint scores and saved evaluation.</p>
+            </div>
+            <div class="form-field">
+              <label for="member-interaction-month">Evaluation month</label>
+              <input class="form-input" id="member-interaction-month" type="month" required aria-describedby="member-interaction-period-help">
+              <p class="status-help" id="member-interaction-period-help">Defaults to the current calendar month.</p>
+            </div>
+          </div>
+          <p class="member-details-error" id="member-interaction-error" role="alert" hidden></p>
+          <div class="member-interaction-grid" id="member-interaction-stats" aria-label="Interaction sub-scores"></div>
+          <div class="member-interaction-results" id="member-interaction-results" aria-live="polite">
+            <p>Suggested score: <strong id="member-interaction-suggested">&mdash;</strong></p>
+            <p>Final interaction score: <strong id="member-interaction-final">Pending</strong></p>
+            <h3>Evaluation Note</h3>
+            <p class="member-interaction-note" id="member-interaction-note">No evaluation has been saved for this month.</p>
+          </div>
+          <p class="status-help">Checkpoint scores use the current interaction weights. A category with no checked checkpoints receives its full weight. Each HR check contributes one-third of the HR weight.</p>
+        </section>
+      </div>
+
+      <noscript>
+        <p class="member-details-error">Enable JavaScript to view this member's profile.</p>
+      </noscript>
+    </main>
+  </div>
+
+  <dialog class="member-dialog" id="member-dialog" aria-labelledby="member-dialog-title">
+    <div class="member-dialog-header">
+      <h2 class="member-dialog-title" id="member-dialog-title">Edit Member</h2>
+      <button class="icon-button" id="member-close-button" type="button" aria-label="Close member dialog">&times;</button>
+    </div>
+    <form id="member-form">
+      <p class="member-form-error" id="member-form-error" role="alert" hidden></p>
+      <fieldset class="member-form-fieldset" id="member-fields">
+        <legend class="sr-only">Member information</legend>
+        <div class="form-field">
+          <label for="member-name">Name</label>
+          <input class="form-input" id="member-name" name="name" type="text" maxlength="100" autocomplete="name" required>
+        </div>
+        <div class="form-field">
+          <label for="member-committee">Committee</label>
+          <input class="form-input" id="member-committee" name="committee" type="text" maxlength="60" required>
+        </div>
+        <div class="form-field">
+          <label for="member-status">Membership</label>
+          <select class="form-input" id="member-status" name="status" required>
+            <option value="Up to date">Active</option>
+            <option value="Archived">Archived</option>
+          </select>
+          <p class="status-help">Follow-up status is calculated from activity progress.</p>
+        </div>
+        <div class="form-field">
+          <label for="member-joined-date">Joined date</label>
+          <input class="form-input" id="member-joined-date" name="joinedDate" type="date" required>
+        </div>
+      </fieldset>
+      <div class="member-dialog-actions">
+        <button class="btn btn-secondary" id="member-cancel-button" type="button">Cancel</button>
+        <button class="btn btn-primary" id="member-save-button" type="submit">Save Changes</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="member-dialog status-dialog" id="status-dialog" aria-labelledby="status-dialog-title" aria-describedby="status-dialog-description">
+    <div class="member-dialog-header">
+      <h2 class="member-dialog-title" id="status-dialog-title">Update Status</h2>
+      <button class="icon-button" id="status-close-button" type="button" aria-label="Close update status dialog">&times;</button>
+    </div>
+    <p class="status-help" id="status-dialog-description"></p>
+    <form id="status-form" novalidate>
+      <p class="member-form-error" id="status-form-error" role="alert" hidden></p>
+      <div class="status-form-fields">
+        <div class="form-field status-field" id="status-value-field" hidden>
+          <label for="status-value">Status</label>
+          <select class="form-input" id="status-value" name="status" disabled></select>
+        </div>
+        <div class="form-field status-field" id="status-submission-date-field" hidden>
+          <label for="submission-date">Submission Date</label>
+          <input class="form-input" type="date" id="submission-date" name="submissionDate" aria-describedby="submission-date-help" disabled>
+          <p class="status-help" id="submission-date-help">Defaults to today. Choose the actual submission date when logging a past submission. Dates after the task's deadline are marked late.</p>
+        </div>
+        <div class="form-field status-field" id="status-proof-field" hidden>
+          <label for="status-proof"><input id="status-proof" name="proofReceived" type="checkbox" disabled> <span id="status-proof-label">Screenshot Received</span></label>
+          <p class="status-help" id="status-proof-help">A done task remains pending until the required proof is received.</p>
+        </div>
+        <div class="form-field status-field" id="status-applied-field" hidden>
+          <label for="status-applied"><input id="status-applied" name="applied" type="checkbox" disabled> Applied?</label>
+        </div>
+        <div class="form-field status-field" id="status-selection-field" hidden>
+          <label for="status-selection">Selection</label>
+          <select class="form-input" id="status-selection" name="selection" disabled>
+            <option value="">Pending Selection</option>
+            <option value="selected">Selected</option>
+            <option value="not_selected">Not Selected</option>
+          </select>
+        </div>
+        <div class="form-field status-field" id="status-final-field" hidden>
+          <label for="status-final">Final Status</label>
+          <select class="form-input" id="status-final" name="finalStatus" disabled>
+            <option value="pending">Pending</option>
+            <option value="attended">Attended</option>
+            <option value="excused">Excuse</option>
+            <option value="absent">Absent</option>
+          </select>
+        </div>
+        <div class="form-field status-field" id="status-application-proof-field" hidden>
+          <label for="status-application-proof"><input id="status-application-proof" name="applicationProofReceived" type="checkbox" disabled> <span id="status-application-proof-label">Application Screenshot Received</span></label>
+          <p class="status-help" id="status-application-proof-help">Track application proof separately from attendance proof.</p>
+        </div>
+        <div class="form-field status-field" id="status-attendance-proof-field" hidden>
+          <label for="status-attendance-proof"><input id="status-attendance-proof" name="attendanceProofReceived" type="checkbox" disabled> <span id="status-attendance-proof-label">Attendance Screenshot Received</span></label>
+          <p class="status-help" id="status-attendance-proof-help">Attendance remains a follow-up until the required proof is received.</p>
+        </div>
+        <div class="form-field status-field" id="status-reason-field" hidden>
+          <label for="status-reason">Excuse Reason</label>
+          <input class="form-input" id="status-reason" name="excuseReason" type="text" maxlength="500" disabled>
+        </div>
+      </div>
+      <div class="member-dialog-actions">
+        <button class="btn btn-secondary" id="status-cancel-button" type="button">Cancel</button>
+        <button class="btn btn-primary" id="status-save-button" type="submit">Save Status</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="js/layout.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/interaction-data.js"></script>
+  <script src="js/member-details.js"></script>
+</body>
+</html>

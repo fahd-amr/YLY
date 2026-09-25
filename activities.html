@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Search and manage events, sessions, and tasks in YLY Follow-Up.">
+  <title>Activities | YLY Follow-Up</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div class="app-shell">
+    <aside class="sidebar" id="app-sidebar" aria-label="Sidebar" tabindex="-1">
+      <button class="icon-button sidebar-close" id="sidebar-close" type="button" aria-label="Close navigation">&times;</button>
+      <div class="sidebar-header">
+        <img src="assets/images/logo.png" alt="YLY Logo" class="brand-logo">
+        <div class="brand-text">
+          <h2>YLY</h2>
+          <span>Follow-Up</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav" aria-label="Main navigation">
+        <ul class="nav-list">
+          <li>
+            <a class="nav-link" href="index.html">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="members.html">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="8" r="3"/><path d="M3 21v-2a6 6 0 0 1 12 0v2M16 5a3 3 0 0 1 0 6M18 15a5 5 0 0 1 3 4v2"/></svg>
+              <span>Members</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-link active" href="activities.html" aria-current="page">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18m-13 5 3 3 5-5"/></svg>
+              <span>Activities</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="monthly-summary.html">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 3v18h17M9 17v-5m5 5V7m5 10V4"/></svg>
+              <span>Monthly Summary</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="interaction.html">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5H4l-1 1v-8.5A8.5 8.5 0 1 1 21 11.5Z"/><path d="M8 10h8m-8 4h5"/></svg>
+              <span>Interaction</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <p class="sidebar-footer">YLY Follow-Up &middot; Version 1</p>
+      <div class="sidebar-mascot">
+        <img src="assets/images/bello.png" alt="Bello Mascot" class="bello-img">
+        <p>A LITTLE FOLLOW-UP<br>A LOT OF IMPACT ❤️</p>
+      </div>
+    </aside>
+    <div class="sidebar-backdrop" id="sidebar-backdrop" aria-hidden="true" hidden></div>
+
+    <main class="main-content" id="main-content" tabindex="-1" aria-labelledby="activities-title">
+      <header class="top-header">
+        <div class="header-title-group">
+          <button class="icon-button menu-toggle" id="menu-toggle" type="button" aria-label="Open navigation" aria-controls="app-sidebar" aria-expanded="false">
+            <span aria-hidden="true">☰</span>
+          </button>
+          <div>
+            <p class="greeting">Welcome back!</p>
+            <h1 class="page-title" id="activities-title">Activities</h1>
+          </div>
+        </div>
+        <div class="header-actions">
+          <button class="icon-button" type="button" aria-label="Notifications (coming soon)" title="Notifications coming soon" disabled>
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg>
+          </button>
+          <button class="btn btn-primary" id="add-activity-button" type="button">
+            <span aria-hidden="true">+</span> Add Activity
+          </button>
+        </div>
+      </header>
+
+      <section class="activities-content" aria-label="Activity directory">
+        <div class="toolbar">
+          <div class="search-field">
+            <label class="sr-only" for="activity-search">Search activities by name</label>
+            <input class="search-input" id="activity-search" type="search" placeholder="Search activities..." autocomplete="off" aria-controls="activities-list">
+          </div>
+          <div class="activity-filters" role="group" aria-label="Filter activities">
+            <button class="filter-pill active" type="button" data-filter="All" aria-pressed="true" aria-controls="activities-list">All</button>
+            <button class="filter-pill" type="button" data-filter="Events" aria-pressed="false" aria-controls="activities-list">Events</button>
+            <button class="filter-pill" type="button" data-filter="Sessions" aria-pressed="false" aria-controls="activities-list">Sessions</button>
+            <button class="filter-pill" type="button" data-filter="Tasks" aria-pressed="false" aria-controls="activities-list">Tasks</button>
+            <button class="filter-pill" type="button" data-filter="General" aria-pressed="false" aria-controls="activities-list">General</button>
+            <button class="filter-pill" type="button" data-filter="SM" aria-pressed="false" aria-controls="activities-list">SM</button>
+            <button class="filter-pill" type="button" data-filter="Pending" aria-pressed="false" aria-controls="activities-list">Pending</button>
+            <button class="filter-pill" type="button" data-filter="Archived" aria-pressed="false" aria-controls="activities-list">Archived</button>
+          </div>
+        </div>
+
+        <p class="activities-error" id="activities-error" role="alert" hidden></p>
+        <p class="activity-count" id="activity-count" role="status" aria-live="polite" aria-atomic="true"></p>
+        <div class="activities-list" id="activities-list"></div>
+
+        <noscript>
+          <p class="activities-error">Enable JavaScript to view and manage activities.</p>
+        </noscript>
+      </section>
+    </main>
+  </div>
+
+  <dialog class="activity-dialog" id="activity-dialog" aria-labelledby="activity-dialog-title">
+    <div class="activity-dialog-header">
+      <h2 class="activity-dialog-title" id="activity-dialog-title">Add Activity</h2>
+      <button class="icon-button" id="activity-close-button" type="button" aria-label="Close activity dialog">&times;</button>
+    </div>
+    <form id="activity-form">
+      <p class="activity-form-error" id="activity-form-error" role="alert" hidden></p>
+      <fieldset class="activity-metadata-fieldset" id="activity-metadata-fieldset">
+        <legend class="sr-only">Activity details</legend>
+        <div class="activity-form-grid">
+        <div class="form-field form-field--full">
+          <label for="activity-name">Activity name</label>
+          <input class="form-input" id="activity-name" name="name" type="text" maxlength="160" required>
+        </div>
+        <div class="form-field">
+          <label for="activity-type">Type</label>
+          <select class="form-input" id="activity-type" name="type" required>
+            <option value="Event">Event</option>
+            <option value="Session">Session</option>
+            <option value="Task">Task</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="activity-source">Committee / source</label>
+          <select class="form-input" id="activity-source" name="source" required>
+            <option value="General">General</option>
+            <option value="SM">SM</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="activity-date">Activity date</label>
+          <input class="form-input" id="activity-date" name="date" type="date" required>
+        </div>
+        <div class="form-field">
+          <label for="activity-deadline">Deadline</label>
+          <input class="form-input" id="activity-deadline" name="deadline" type="date" required>
+        </div>
+        <div class="form-field">
+          <span id="activity-proof-label">Proof required?</span>
+          <div class="activity-requirements" role="radiogroup" aria-labelledby="activity-proof-label">
+            <label class="checkbox-field" for="activity-proof-not-required">
+              <input id="activity-proof-not-required" name="proofRequired" type="radio" value="no" checked> No
+            </label>
+            <label class="checkbox-field" for="activity-proof-required">
+              <input id="activity-proof-required" name="proofRequired" type="radio" value="yes"> Yes
+            </label>
+          </div>
+        </div>
+        <div class="form-field" id="activity-proof-type-field" hidden>
+          <label for="activity-proof-type">Proof type</label>
+          <select class="form-input" id="activity-proof-type" name="proofType" disabled>
+            <option value="screenshot">Screenshot</option>
+            <option value="form_confirmation">Form Confirmation</option>
+          </select>
+        </div>
+        <fieldset class="activity-target-fieldset form-field--full">
+          <legend>Target members (optional)</legend>
+          <div class="activity-member-options" id="activity-target-members"></div>
+        </fieldset>
+        </div>
+      </fieldset>
+      <div class="activity-dialog-actions">
+        <button class="btn btn-secondary" id="activity-cancel-button" type="button">Cancel</button>
+        <button class="btn btn-primary" id="activity-save-button" type="submit">Add Activity</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="member-dialog confirm-dialog" id="activity-delete-dialog" aria-labelledby="activity-delete-title" aria-describedby="activity-delete-message">
+    <div class="member-dialog-header">
+      <h2 class="member-dialog-title" id="activity-delete-title">Delete Activity</h2>
+      <button class="icon-button" id="activity-delete-close" type="button" aria-label="Cancel activity deletion">&times;</button>
+    </div>
+    <p id="activity-delete-message"></p>
+    <p class="activity-form-error" id="activity-delete-error" role="alert" hidden></p>
+    <div class="confirm-actions">
+      <button class="btn btn-secondary" id="activity-delete-cancel" type="button">Cancel</button>
+      <button class="btn btn-primary" id="activity-delete-archive" type="button" hidden>Archive</button>
+      <button class="btn btn-danger" id="activity-delete-confirm" type="button">Delete</button>
+    </div>
+  </dialog>
+
+  <script src="js/layout.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/activities.js"></script>
+</body>
+</html>

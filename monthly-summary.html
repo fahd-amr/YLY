@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Review monthly session, event, and task progress for every YLY Follow-Up member.">
+  <title>Monthly Summary | YLY Follow-Up</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div class="app-shell">
+    <aside class="sidebar" id="app-sidebar" aria-label="Sidebar" tabindex="-1">
+      <button class="icon-button sidebar-close" id="sidebar-close" type="button" aria-label="Close navigation">&times;</button>
+      <div class="sidebar-header">
+        <img src="assets/images/logo.png" alt="YLY Logo" class="brand-logo">
+        <div class="brand-text">
+          <h2>YLY</h2>
+          <span>Follow-Up</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav" aria-label="Main navigation">
+        <ul class="nav-list">
+          <li>
+            <a class="nav-link" href="index.html">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="members.html">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="8" r="3"/><path d="M3 21v-2a6 6 0 0 1 12 0v2M16 5a3 3 0 0 1 0 6M18 15a5 5 0 0 1 3 4v2"/></svg>
+              <span>Members</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="activities.html">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18m-13 5 3 3 5-5"/></svg>
+              <span>Activities</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-link active" href="monthly-summary.html" aria-current="page">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 3v18h17M9 17v-5m5 5V7m5 10V4"/></svg>
+              <span>Monthly Summary</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="interaction.html">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5H4l-1 1v-8.5A8.5 8.5 0 1 1 21 11.5Z"/><path d="M8 10h8m-8 4h5"/></svg>
+              <span>Interaction</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <p class="sidebar-footer">YLY Follow-Up &middot; Version 1</p>
+      <div class="sidebar-mascot">
+        <img src="assets/images/bello.png" alt="Bello Mascot" class="bello-img">
+        <p>A LITTLE FOLLOW-UP<br>A LOT OF IMPACT ❤️</p>
+      </div>
+    </aside>
+    <div class="sidebar-backdrop" id="sidebar-backdrop" aria-hidden="true" hidden></div>
+
+    <main class="main-content" id="main-content" tabindex="-1" aria-labelledby="summary-title">
+      <header class="top-header">
+        <div class="header-title-group">
+          <button class="icon-button menu-toggle" id="menu-toggle" type="button" aria-label="Open navigation" aria-controls="app-sidebar" aria-expanded="false">
+            <span aria-hidden="true">☰</span>
+          </button>
+          <div>
+            <p class="greeting">Welcome back!</p>
+            <h1 class="page-title" id="summary-title">Monthly Summary</h1>
+          </div>
+        </div>
+        <div class="header-actions summary-range-actions">
+          <div class="summary-date-field">
+            <label for="summary-start">Start date</label>
+            <input class="summary-date-input" type="date" id="summary-start" value="2026-09-23" aria-controls="summary-container" required>
+          </div>
+          <div class="summary-date-field">
+            <label for="summary-end">End date</label>
+            <input class="summary-date-input" type="date" id="summary-end" value="2026-10-25" aria-controls="summary-container" required>
+          </div>
+          <div class="summary-date-field">
+            <label for="summary-interaction-month">Interaction evaluation month</label>
+            <input class="summary-date-input" type="month" id="summary-interaction-month" aria-controls="summary-container" aria-describedby="summary-interaction-help" required>
+          </div>
+          <button class="btn btn-primary" type="button" id="generate-summary-btn" aria-controls="summary-container">Generate Summary</button>
+          <button id="export-excel-btn" type="button" class="btn" style="background: var(--primary-blue); color: white; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer; font-weight: bold; margin-left: 10px;" disabled>Export to Excel</button>
+        </div>
+      </header>
+
+      <section class="summary-content" aria-label="Member summaries">
+        <p class="summary-note">All activity types use the activity date, including both the start and end dates. Archived activities are included so previous cycles remain available. Event totals reflect the recorded application, selection, and final status.</p>
+        <p class="summary-note" id="summary-interaction-help">Interaction cards and Excel scores use the selected evaluation month. It defaults to the end date's month when you change the activity range; you can choose another month.</p>
+        <p class="summary-error" id="summary-error" role="alert" hidden></p>
+        <p class="summary-error" id="summary-interaction-error" role="alert" hidden></p>
+        <p class="summary-status" id="summary-status" role="status" aria-live="polite" aria-atomic="true"></p>
+        <div id="summary-container" class="summary-grid"></div>
+        <noscript>
+          <p class="summary-error">Enable JavaScript to view monthly summaries.</p>
+        </noscript>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/interaction-data.js"></script>
+  <script src="js/monthly-summary.js"></script>
+</body>
+</html>

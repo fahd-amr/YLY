@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="YLY Follow-Up: keep track of members, activities, and monthly progress.">
+  <title>Dashboard | YLY Follow-Up</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div class="app-shell">
+    <aside class="sidebar" id="app-sidebar" aria-label="Sidebar" tabindex="-1">
+      <button class="icon-button sidebar-close" id="sidebar-close" type="button" aria-label="Close navigation">&times;</button>
+      <div class="sidebar-header">
+        <img src="assets/images/logo.png" alt="YLY Logo" class="brand-logo">
+        <div class="brand-text">
+          <h2>YLY</h2>
+          <span>Follow-Up</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav" aria-label="Main navigation">
+        <ul class="nav-list">
+          <li>
+            <a class="nav-link active" href="index.html" aria-current="page">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="members.html">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="8" r="3"/><path d="M3 21v-2a6 6 0 0 1 12 0v2M16 5a3 3 0 0 1 0 6M18 15a5 5 0 0 1 3 4v2"/></svg>
+              <span>Members</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="activities.html">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18m-13 5 3 3 5-5"/></svg>
+              <span>Activities</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="monthly-summary.html">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 3v18h17M9 17v-5m5 5V7m5 10V4"/></svg>
+              <span>Monthly Summary</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="interaction.html">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5H4l-1 1v-8.5A8.5 8.5 0 1 1 21 11.5Z"/><path d="M8 10h8m-8 4h5"/></svg>
+              <span>Interaction</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <p class="sidebar-footer">YLY Follow-Up &middot; Version 1</p>
+      <div class="sidebar-mascot">
+        <img src="assets/images/bello.png" alt="Bello Mascot" class="bello-img">
+        <p>A LITTLE FOLLOW-UP<br>A LOT OF IMPACT ❤️</p>
+      </div>
+    </aside>
+    <div class="sidebar-backdrop" id="sidebar-backdrop" aria-hidden="true" hidden></div>
+
+    <main class="main-content" id="main-content" tabindex="-1" aria-labelledby="dashboard-title">
+      <header class="top-header">
+        <div class="header-title-group">
+          <button class="icon-button menu-toggle" id="menu-toggle" type="button" aria-label="Open navigation" aria-controls="app-sidebar" aria-expanded="false">
+            <span aria-hidden="true">☰</span>
+          </button>
+          <div>
+            <p class="greeting">Welcome back!</p>
+            <h1 class="page-title" id="dashboard-title">Dashboard</h1>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <!-- Enable when notification behavior is implemented. -->
+          <button class="icon-button" type="button" aria-label="Notifications (coming soon)" title="Notifications coming soon" disabled>
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg>
+          </button>
+          <!-- These links are entry points for the future add forms. -->
+          <a class="btn btn-secondary" href="members.html#add-member">
+            <span aria-hidden="true">+</span> Add Member
+          </a>
+          <button id="start-cycle-btn" type="button" class="btn btn-secondary" style="background: #ffc107; color: #000; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer; font-weight: bold; margin-right: 10px;">Start New Cycle</button>
+          <a class="btn btn-primary" href="activities.html#add-activity">
+            <span aria-hidden="true">+</span> Add Activity
+          </a>
+          <div class="backup-controls" role="group" aria-label="Data backup and restore">
+            <button class="btn btn-secondary" id="backup-data-btn" type="button">Backup Data</button>
+            <button class="btn btn-secondary" id="restore-data-btn" type="button" aria-describedby="restore-note">Restore Data</button>
+            <input id="restore-file" type="file" accept=".json" hidden>
+            <p class="backup-note" id="restore-note">Restore replaces saved members and activities.</p>
+          </div>
+        </div>
+      </header>
+
+      <div id="dashboard-content">
+        <p class="backup-status" id="backup-status" role="status" aria-live="polite"></p>
+        <p class="dashboard-error" id="backup-error" role="alert" hidden></p>
+        <p id="dashboard-error" class="dashboard-error" role="alert" hidden></p>
+
+        <section class="dashboard-stats dashboard-stats--reviews" aria-label="Dashboard statistics">
+          <article class="stat-card" aria-labelledby="total-members-label">
+            <p class="stat-number" id="total-members">&mdash;</p>
+            <h2 class="stat-label" id="total-members-label">Total Members</h2>
+          </article>
+          <article class="stat-card stat-card--pending" aria-labelledby="pending-items-label">
+            <p class="stat-number" id="total-pending-items">&mdash;</p>
+            <h2 class="stat-label" id="pending-items-label">Total Pending Items</h2>
+          </article>
+          <article class="stat-card" aria-labelledby="upcoming-deadlines-label">
+            <p class="stat-number" id="upcoming-deadlines-count">&mdash;</p>
+            <h2 class="stat-label" id="upcoming-deadlines-label">Upcoming Deadlines</h2>
+          </article>
+          <article class="stat-card interaction-review-card" aria-labelledby="interaction-reviews-label">
+            <h2 class="stat-label" id="interaction-reviews-label">Interaction Reviews</h2>
+            <p class="card-subtitle" id="interaction-review-month"></p>
+            <div class="interaction-review-counts">
+              <div><p class="stat-number" id="interaction-completed-count">&mdash;</p><p>Completed</p></div>
+              <div><p class="stat-number" id="interaction-pending-count">&mdash;</p><p>Pending</p></div>
+            </div>
+          </article>
+        </section>
+
+        <div class="dashboard-columns">
+          <section class="list-card" aria-labelledby="follow-up-title">
+            <h2 class="card-title" id="follow-up-title">Need Follow-up</h2>
+            <p class="card-subtitle">Members with pending activity items.</p>
+            <ul class="dashboard-list" id="follow-up-list"></ul>
+            <section class="dashboard-interaction-follow-up" aria-labelledby="interaction-follow-up-title">
+              <h3 class="card-title" id="interaction-follow-up-title">Interaction Evaluation Pending</h3>
+              <p class="card-subtitle">Members awaiting a final interaction score for the current month.</p>
+              <p class="dashboard-error" id="dashboard-interaction-error" role="alert" hidden></p>
+              <ul class="dashboard-list" id="interaction-follow-up-list"></ul>
+            </section>
+          </section>
+          <section class="list-card" aria-labelledby="deadlines-title">
+            <h2 class="card-title" id="deadlines-title">Upcoming Deadlines</h2>
+            <p class="card-subtitle">Deadlines after today, soonest first.</p>
+            <ul class="dashboard-list" id="upcoming-deadlines-list"></ul>
+          </section>
+        </div>
+
+        <noscript>
+          <p class="dashboard-error">Enable JavaScript to view your dashboard.</p>
+        </noscript>
+      </div>
+    </main>
+  </div>
+  <script src="js/layout.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/interaction-data.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

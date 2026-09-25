@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Search, filter, and manage members in YLY Follow-Up.">
+  <title>Members | YLY Follow-Up</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div class="app-shell">
+    <aside class="sidebar" id="app-sidebar" aria-label="Sidebar" tabindex="-1">
+      <button class="icon-button sidebar-close" id="sidebar-close" type="button" aria-label="Close navigation">&times;</button>
+      <div class="sidebar-header">
+        <img src="assets/images/logo.png" alt="YLY Logo" class="brand-logo">
+        <div class="brand-text">
+          <h2>YLY</h2>
+          <span>Follow-Up</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav" aria-label="Main navigation">
+        <ul class="nav-list">
+          <li>
+            <a class="nav-link" href="index.html">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-link active" href="members.html" aria-current="page">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="8" r="3"/><path d="M3 21v-2a6 6 0 0 1 12 0v2M16 5a3 3 0 0 1 0 6M18 15a5 5 0 0 1 3 4v2"/></svg>
+              <span>Members</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="activities.html">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18m-13 5 3 3 5-5"/></svg>
+              <span>Activities</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="monthly-summary.html">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 3v18h17M9 17v-5m5 5V7m5 10V4"/></svg>
+              <span>Monthly Summary</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="interaction.html">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5H4l-1 1v-8.5A8.5 8.5 0 1 1 21 11.5Z"/><path d="M8 10h8m-8 4h5"/></svg>
+              <span>Interaction</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <p class="sidebar-footer">YLY Follow-Up &middot; Version 1</p>
+      <div class="sidebar-mascot">
+        <img src="assets/images/bello.png" alt="Bello Mascot" class="bello-img">
+        <p>A LITTLE FOLLOW-UP<br>A LOT OF IMPACT ❤️</p>
+      </div>
+    </aside>
+    <div class="sidebar-backdrop" id="sidebar-backdrop" aria-hidden="true" hidden></div>
+
+    <main class="main-content" id="main-content" tabindex="-1" aria-labelledby="members-title">
+      <header class="top-header">
+        <div class="header-title-group">
+          <button class="icon-button menu-toggle" id="menu-toggle" type="button" aria-label="Open navigation" aria-controls="app-sidebar" aria-expanded="false">
+            <span aria-hidden="true">☰</span>
+          </button>
+          <div>
+            <p class="greeting">Welcome back!</p>
+            <h1 class="page-title" id="members-title">Members</h1>
+          </div>
+        </div>
+        <div class="header-actions">
+          <button class="icon-button" type="button" aria-label="Notifications (coming soon)" title="Notifications coming soon" disabled>
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg>
+          </button>
+          <button class="btn btn-primary" id="add-member-button" type="button">
+            <span aria-hidden="true">+</span> Add Member
+          </button>
+        </div>
+      </header>
+
+      <section class="members-content" aria-label="Member directory">
+        <div class="toolbar">
+          <div class="search-field">
+            <label class="sr-only" for="member-search">Search members by name</label>
+            <input class="search-input" id="member-search" type="search" placeholder="Search members..." autocomplete="off" aria-controls="members-table-body">
+          </div>
+          <div class="member-filters" role="group" aria-label="Filter members by status">
+            <button class="filter-pill active" type="button" data-status="All" aria-pressed="true" aria-controls="members-table-body">All</button>
+            <button class="filter-pill" type="button" data-status="Needs Follow-up" aria-pressed="false" aria-controls="members-table-body">Needs Follow-up</button>
+            <button class="filter-pill" type="button" data-status="Up to date" aria-pressed="false" aria-controls="members-table-body">Up to date</button>
+            <button class="filter-pill" type="button" data-status="Archived" aria-pressed="false" aria-controls="members-table-body">Archived</button>
+          </div>
+        </div>
+
+        <p class="members-error" id="members-error" role="alert" hidden></p>
+        <p class="action-notice" id="member-notice" role="status" aria-live="polite"></p>
+        <p class="member-count" id="member-count" role="status" aria-live="polite" aria-atomic="true"></p>
+
+        <div class="members-table-container" role="region" aria-label="Members table" tabindex="0">
+          <table class="members-table">
+            <caption class="sr-only">Members, their status, and pending activity counts</caption>
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Committee</th>
+                <th scope="col">Status</th>
+                <th scope="col">Pending</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="members-table-body"></tbody>
+          </table>
+        </div>
+
+        <noscript>
+          <p class="members-error">Enable JavaScript to view and manage members.</p>
+        </noscript>
+      </section>
+    </main>
+  </div>
+
+  <dialog class="member-dialog" id="member-dialog" aria-labelledby="member-dialog-title">
+    <div class="member-dialog-header">
+      <h2 class="member-dialog-title" id="member-dialog-title">Add Member</h2>
+      <button class="icon-button" id="member-close-button" type="button" aria-label="Close member dialog">&times;</button>
+    </div>
+    <form id="member-form">
+      <p class="member-form-error" id="member-form-error" role="alert" hidden></p>
+      <fieldset class="member-form-fieldset" id="member-fields">
+        <legend class="sr-only">Member information</legend>
+        <div class="form-field">
+          <label for="member-name">Name</label>
+          <input class="form-input" id="member-name" name="name" type="text" maxlength="100" autocomplete="name" required>
+        </div>
+        <div class="form-field">
+          <label for="member-committee">Committee</label>
+          <input class="form-input" id="member-committee" name="committee" type="text" maxlength="60" value="SM" required>
+        </div>
+        <div class="form-field">
+          <label for="member-status">Membership</label>
+          <select class="form-input" id="member-status" name="status" aria-describedby="member-status-help" required>
+            <option value="Up to date">Active</option>
+            <option value="Archived">Archived</option>
+          </select>
+          <p class="status-help" id="member-status-help">Follow-up status is calculated from activity progress.</p>
+        </div>
+        <div class="form-field">
+          <label for="member-joined-date">Joined date</label>
+          <input class="form-input" id="member-joined-date" name="joinedDate" type="date" required>
+        </div>
+      </fieldset>
+      <div class="member-dialog-actions">
+        <button class="btn btn-secondary" id="member-cancel-button" type="button">Cancel</button>
+        <button class="btn btn-primary" id="member-save-button" type="submit">Save Member</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="member-dialog confirm-dialog" id="member-delete-dialog" aria-labelledby="member-delete-title" aria-describedby="member-delete-message">
+    <div class="member-dialog-header">
+      <h2 class="member-dialog-title" id="member-delete-title">Delete Member</h2>
+      <button class="icon-button" id="member-delete-close" type="button" aria-label="Close delete confirmation">&times;</button>
+    </div>
+    <p id="member-delete-message"></p>
+    <p class="member-form-error" id="member-delete-error" role="alert" hidden></p>
+    <div class="confirm-actions">
+      <button class="btn btn-secondary" id="member-delete-cancel" type="button">Cancel</button>
+      <button class="btn btn-danger" id="member-delete-confirm" type="button">Delete</button>
+    </div>
+  </dialog>
+
+  <script src="js/layout.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/members.js"></script>
+</body>
+</html>

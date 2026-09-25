@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Record monthly interaction checkpoints and review YLY member evaluations.">
+  <title>Interaction | YLY Follow-Up</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div class="app-shell">
+    <aside class="sidebar" id="app-sidebar" aria-label="Sidebar" tabindex="-1">
+      <button class="icon-button sidebar-close" id="sidebar-close" type="button" aria-label="Close navigation">&times;</button>
+      <div class="sidebar-header">
+        <img src="assets/images/logo.png" alt="YLY Logo" class="brand-logo">
+        <div class="brand-text">
+          <h2>YLY</h2>
+          <span>Follow-Up</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav" aria-label="Main navigation">
+        <ul class="nav-list">
+          <li>
+            <a class="nav-link" href="index.html">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="members.html">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="8" r="3"/><path d="M3 21v-2a6 6 0 0 1 12 0v2M16 5a3 3 0 0 1 0 6M18 15a5 5 0 0 1 3 4v2"/></svg>
+              <span>Members</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="activities.html">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18m-13 5 3 3 5-5"/></svg>
+              <span>Activities</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="monthly-summary.html">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 3v18h17M9 17v-5m5 5V7m5 10V4"/></svg>
+              <span>Monthly Summary</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-link active" href="interaction.html" aria-current="page">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5H4l-1 1v-8.5A8.5 8.5 0 1 1 21 11.5Z"/><path d="M8 10h8m-8 4h5"/></svg>
+              <span>Interaction</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <p class="sidebar-footer">YLY Follow-Up &middot; Version 1</p>
+      <div class="sidebar-mascot">
+        <img src="assets/images/bello.png" alt="Bello Mascot" class="bello-img">
+        <p>A LITTLE FOLLOW-UP<br>A LOT OF IMPACT &#10084;&#65039;</p>
+      </div>
+    </aside>
+    <div class="sidebar-backdrop" id="sidebar-backdrop" aria-hidden="true" hidden></div>
+
+    <main class="main-content interaction-page" id="main-content" tabindex="-1" aria-labelledby="interaction-title">
+      <header class="top-header">
+        <div class="header-title-group">
+          <button class="icon-button menu-toggle" id="menu-toggle" type="button" aria-label="Open navigation" aria-controls="app-sidebar" aria-expanded="false">
+            <span aria-hidden="true">&#9776;</span>
+          </button>
+          <div>
+            <p class="greeting">Monthly engagement &amp; evaluation</p>
+            <h1 class="page-title" id="interaction-title">Interaction</h1>
+          </div>
+        </div>
+        <div class="header-actions interaction-header-actions">
+          <div class="form-field interaction-month-field">
+            <label for="interaction-month">Evaluation month</label>
+            <input class="form-input" type="month" id="interaction-month" value="2026-09" aria-controls="interaction-members-body checkpoint-list" required>
+          </div>
+          <button class="btn btn-secondary" id="interaction-settings-btn" type="button">Interaction Settings</button>
+          <button class="btn btn-primary" id="add-checkpoint-btn" type="button"><span aria-hidden="true">+</span> Add Checkpoint</button>
+        </div>
+      </header>
+
+      <p class="members-error" id="interaction-error" role="alert" hidden></p>
+      <p class="action-notice" id="interaction-notice" role="status" aria-live="polite"></p>
+      <p class="interaction-period-label" id="interaction-period-label" role="status" aria-live="polite"></p>
+
+      <section class="dashboard-stats interaction-stats" aria-label="Interaction statistics">
+        <article class="stat-card">
+          <p class="stat-number" id="interaction-members-total">0</p>
+          <h2 class="stat-label">Members total</h2>
+        </article>
+        <article class="stat-card">
+          <p class="stat-number" id="interaction-evaluated-total">0</p>
+          <h2 class="stat-label">Evaluated</h2>
+        </article>
+        <article class="stat-card stat-card--pending">
+          <p class="stat-number" id="interaction-review-total">0</p>
+            <h2 class="stat-label">Need Review</h2>
+            <p class="interaction-stat-help">Pending scores, unchecked results, or updated suggestions</p>
+        </article>
+      </section>
+
+      <section class="interaction-section" aria-labelledby="interaction-members-heading">
+        <div class="interaction-section-header">
+          <div>
+            <h2 class="card-title" id="interaction-members-heading">Member Evaluations</h2>
+            <p class="interaction-help" id="interaction-scoring-help">Scores use expected checkpoints with a logged result. Unchecked checkpoints are excluded; No Interaction counts as checked. A category with no checked results receives its full weight. Final scores are set manually.</p>
+          </div>
+        </div>
+        <div class="members-table-container" role="region" aria-label="Member interaction evaluations" tabindex="0">
+          <table class="members-table interaction-table" aria-describedby="interaction-scoring-help">
+            <caption class="sr-only">Monthly interaction scores for active members</caption>
+            <thead>
+              <tr>
+                <th scope="col">Member Name</th>
+                <th scope="col">Facebook</th>
+                <th scope="col">General</th>
+                <th scope="col">SM</th>
+                <th scope="col">HR</th>
+                <th scope="col">Suggested</th>
+                <th scope="col">Final</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="interaction-members-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="interaction-section" aria-labelledby="checkpoints-heading">
+        <div class="interaction-section-header">
+          <div>
+            <h2 class="card-title" id="checkpoints-heading">Checkpoints</h2>
+            <p class="interaction-help">Log each member's result for the selected month. Checkpoints where interaction is not expected remain available without affecting scores.</p>
+          </div>
+        </div>
+        <div class="interaction-checkpoint-list" id="checkpoint-list"></div>
+      </section>
+
+      <noscript>
+        <p class="members-error">Enable JavaScript to record interactions and evaluate members.</p>
+      </noscript>
+    </main>
+  </div>
+
+  <dialog class="member-dialog interaction-dialog" id="interaction-settings-dialog" aria-labelledby="interaction-settings-title" aria-describedby="interaction-settings-help">
+    <div class="member-dialog-header">
+      <h2 class="member-dialog-title" id="interaction-settings-title">Interaction Settings</h2>
+      <button class="icon-button" type="button" data-close-dialog="interaction-settings-dialog" aria-label="Close interaction settings">&times;</button>
+    </div>
+    <form id="interaction-settings-form" novalidate>
+      <p class="interaction-help" id="interaction-settings-help">Choose the maximum points for each category. Weights must total 10.</p>
+      <p class="member-form-error" id="settings-error" role="alert" hidden></p>
+      <div class="interaction-weight-grid">
+        <div class="form-field">
+          <label for="weight-fb">Facebook</label>
+          <input class="form-input" id="weight-fb" name="fb" type="number" min="0" max="10" step="1" value="2" required>
+        </div>
+        <div class="form-field">
+          <label for="weight-general">General</label>
+          <input class="form-input" id="weight-general" name="general" type="number" min="0" max="10" step="1" value="2" required>
+        </div>
+        <div class="form-field">
+          <label for="weight-sm">SM</label>
+          <input class="form-input" id="weight-sm" name="sm" type="number" min="0" max="10" step="1" value="3" required>
+        </div>
+        <div class="form-field">
+          <label for="weight-hr">HR</label>
+          <input class="form-input" id="weight-hr" name="hr" type="number" min="0" max="10" step="1" value="3" required>
+        </div>
+      </div>
+      <p class="interaction-weights-total" id="weights-total" role="status" aria-live="polite">Total: 10 / 10</p>
+      <p class="interaction-help">With the default HR weight of 3, each checked HR item earns 1 point. When its weight changes, the three items share that weight equally.</p>
+      <div class="member-dialog-actions">
+        <button class="btn btn-secondary" type="button" data-close-dialog="interaction-settings-dialog">Cancel</button>
+        <button class="btn btn-primary" id="settings-save" type="submit">Save Settings</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="member-dialog interaction-dialog" id="checkpoint-dialog" aria-labelledby="checkpoint-dialog-title">
+    <div class="member-dialog-header">
+      <h2 class="member-dialog-title" id="checkpoint-dialog-title">Add Checkpoint</h2>
+      <button class="icon-button" type="button" data-close-dialog="checkpoint-dialog" aria-label="Close checkpoint dialog">&times;</button>
+    </div>
+    <form id="checkpoint-form" novalidate>
+      <p class="member-form-error" id="checkpoint-error" role="alert" hidden></p>
+      <div class="interaction-form-fields">
+        <div class="form-field">
+          <label for="checkpoint-type">Type</label>
+          <select class="form-input" id="checkpoint-type" name="type" required>
+            <option value="Facebook">Facebook</option>
+            <option value="General">General</option>
+            <option value="SM">SM</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="checkpoint-title">Title</label>
+          <input class="form-input" id="checkpoint-title" name="title" type="text" maxlength="160" required>
+        </div>
+        <div class="form-field">
+          <label for="checkpoint-date">Date</label>
+          <input class="form-input" id="checkpoint-date" name="date" type="date" aria-describedby="checkpoint-date-help" required>
+          <p class="interaction-help" id="checkpoint-date-help">The date determines the checkpoint's month. Adding it opens that month.</p>
+        </div>
+        <div class="form-field">
+          <label for="checkpoint-expected">Interaction expected?</label>
+          <select class="form-input" id="checkpoint-expected" name="interactionExpected" aria-describedby="checkpoint-expected-help" required>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+          <p class="interaction-help" id="checkpoint-expected-help">Only checkpoints marked Yes contribute to engagement scores.</p>
+        </div>
+      </div>
+      <div class="member-dialog-actions">
+        <button class="btn btn-secondary" type="button" data-close-dialog="checkpoint-dialog">Cancel</button>
+        <button class="btn btn-primary" id="checkpoint-save" type="submit">Add Checkpoint</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="member-dialog interaction-dialog interaction-dialog--wide" id="interaction-log-dialog" aria-labelledby="interaction-log-title" aria-describedby="interaction-log-help">
+    <div class="member-dialog-header">
+      <h2 class="member-dialog-title" id="interaction-log-title">Log Interactions</h2>
+      <button class="icon-button" type="button" data-close-dialog="interaction-log-dialog" aria-label="Close interaction log">&times;</button>
+    </div>
+    <form id="interaction-log-form" novalidate>
+      <p class="interaction-help" id="interaction-log-help">Choose a result for each active member. Leave Unchecked until reviewed; choose No Interaction when checked with no engagement.</p>
+      <p class="member-form-error" id="interaction-log-error" role="alert" hidden></p>
+      <div class="interaction-log-members" id="interaction-log-members"></div>
+      <div class="member-dialog-actions">
+        <button class="btn btn-secondary" type="button" data-close-dialog="interaction-log-dialog">Cancel</button>
+        <button class="btn btn-primary" id="interaction-log-save" type="submit">Save Interactions</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="member-dialog interaction-dialog interaction-dialog--wide" id="evaluation-dialog" aria-labelledby="evaluation-title">
+    <div class="member-dialog-header">
+      <h2 class="member-dialog-title" id="evaluation-title">Evaluate Member</h2>
+      <button class="icon-button" type="button" data-close-dialog="evaluation-dialog" aria-label="Close member evaluation">&times;</button>
+    </div>
+    <form id="evaluation-form" novalidate>
+      <p class="member-form-error" id="evaluation-error" role="alert" hidden></p>
+      <p class="interaction-review-note" id="evaluation-review-note" role="status" hidden></p>
+      <section aria-labelledby="evaluation-checkpoints-title">
+        <h3 class="interaction-subheading" id="evaluation-checkpoints-title">Checkpoint Progress</h3>
+        <p class="interaction-help">Interacted / Total Checked for expected checkpoints in this month.</p>
+        <div class="interaction-breakdown" id="evaluation-breakdown"></div>
+      </section>
+      <fieldset class="interaction-hr-fieldset" aria-describedby="evaluation-hr-help">
+        <legend>HR Evaluation</legend>
+        <p class="interaction-help" id="evaluation-hr-help">At the default HR weight, each checked item earns 1 point.</p>
+        <label class="checkbox-field" for="hr-responds"><input id="hr-responds" name="responds" type="checkbox">Responds to follow-up</label>
+        <label class="checkbox-field" for="hr-proofs"><input id="hr-proofs" name="proofs" type="checkbox">Sends required proofs</label>
+        <label class="checkbox-field" for="hr-proper-comm"><input id="hr-proper-comm" name="properComm" type="checkbox">Communicates properly</label>
+      </fieldset>
+      <div class="interaction-suggested">
+        <span>Suggested Score</span>
+        <p><strong id="evaluation-suggested" aria-live="polite">0</strong><span> / 10</span></p>
+      </div>
+      <div class="interaction-form-fields">
+        <div class="form-field">
+          <label for="evaluation-final">Final Interaction Score</label>
+          <select class="form-input" id="evaluation-final" name="finalScore" aria-describedby="evaluation-final-help">
+            <option value="">Pending</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+          <p class="interaction-help" id="evaluation-final-help">Choose a whole number from 0 to 10 to save. Cancel to leave the existing evaluation unchanged.</p>
+        </div>
+        <div class="form-field">
+          <label for="evaluation-note">Evaluation Note</label>
+          <textarea class="form-input" id="evaluation-note" name="note" rows="4" maxlength="2000" placeholder="Add context for this evaluation..."></textarea>
+        </div>
+      </div>
+      <div class="member-dialog-actions">
+        <button class="btn btn-secondary" type="button" data-close-dialog="evaluation-dialog">Cancel</button>
+        <button class="btn btn-primary" id="evaluation-save" type="submit">Save Evaluation</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="js/layout.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/interaction-data.js"></script>
+  <script src="js/interaction.js"></script>
+</body>
+</html>

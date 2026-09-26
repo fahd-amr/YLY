@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sign in to YLY Follow-Up to manage your team's activities and progress.">
+  <title>Login | YLY Follow-Up</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/login.css">
+</head>
+<body class="login-page">
+  <main class="login-card" aria-labelledby="login-title">
+    <header class="login-header">
+      <img class="login-logo" src="assets/images/logo.png" alt="YLY Logo" width="80" height="80">
+      <p class="login-brand">YLY <span>Follow-Up</span></p>
+      <h1 id="login-title">Welcome back</h1>
+      <p class="login-intro">Sign in to follow your team's progress.</p>
+    </header>
+
+    <form id="login-form" method="post">
+      <p class="login-error" id="login-error" role="alert" tabindex="-1" hidden></p>
+      <fieldset class="login-fields" id="login-fields" disabled>
+        <legend class="login-form-title">Login details</legend>
+        <div class="login-field">
+          <label for="login-email">Email</label>
+          <input id="login-email" name="email" type="email" autocomplete="username" inputmode="email" autocapitalize="none" spellcheck="false" required>
+        </div>
+        <div class="login-field">
+          <label for="login-password">Password</label>
+          <input id="login-password" name="password" type="password" autocomplete="current-password" required>
+        </div>
+        <button class="login-button" id="login-button" type="submit">Login</button>
+      </fieldset>
+      <p class="login-status" id="login-status" role="status">Connecting securely&hellip;</p>
+    </form>
+
+    <noscript>
+      <p class="login-error">Please enable JavaScript in your browser to sign in.</p>
+    </noscript>
+    <p class="login-footer">A little follow-up. A lot of impact.</p>
+  </main>
+  <script type="module" src="js/login.js"></script>
+</body>
+</html>

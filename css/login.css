@@ -1,0 +1,157 @@
+.login-page {
+  display: grid;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: 32px 20px;
+  place-items: center;
+  background: linear-gradient(145deg, var(--primary-blue-light), var(--background));
+}
+
+.login-page .login-card {
+  width: min(100%, 440px);
+  padding: 36px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.login-page .login-header {
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.login-page .login-logo {
+  display: block;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  object-fit: contain;
+  box-shadow: 0 4px 14px rgb(37 99 235 / 12%);
+}
+
+.login-page .login-brand {
+  margin-bottom: 22px;
+  color: var(--primary-blue);
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.login-page .login-brand span {
+  color: var(--text-muted);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.login-page h1 {
+  font-size: clamp(26px, 6vw, 30px);
+  line-height: 1.25;
+}
+
+.login-page .login-intro {
+  margin-top: 10px;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.login-page .login-fields {
+  display: grid;
+  min-width: 0;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.login-page .login-form-title {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.login-page .login-field {
+  display: grid;
+  min-width: 0;
+  gap: 8px;
+}
+
+.login-page .login-field label {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.login-page .login-field input {
+  width: 100%;
+  min-width: 0;
+  min-height: 48px;
+  padding: 11px 13px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-small);
+  background: var(--surface);
+  color: var(--text);
+}
+
+.login-page .login-field input:focus-visible {
+  border-color: var(--primary-blue);
+}
+
+.login-page .login-button {
+  min-height: 48px;
+  padding: 12px 18px;
+  border: 0;
+  border-radius: var(--radius-small);
+  background: var(--primary-blue);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.login-page .login-button:hover:not(:disabled) {
+  background: var(--primary-blue-hover);
+}
+
+.login-page .login-fields:disabled .login-button,
+.login-page .login-button:disabled {
+  opacity: 0.65;
+  cursor: default;
+}
+
+.login-page .login-error {
+  margin-bottom: 20px;
+  padding: 12px 14px;
+  border-radius: var(--radius-small);
+  background: var(--danger-light);
+  color: var(--danger);
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.login-page .login-status {
+  min-height: 21px;
+  margin-top: 14px;
+  color: var(--text-muted);
+  font-size: 14px;
+  text-align: center;
+}
+
+.login-page .login-footer {
+  margin-top: 22px;
+  color: var(--text-muted);
+  font-size: 12px;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .login-page {
+    padding: 20px 16px;
+  }
+
+  .login-page .login-card {
+    padding: 28px 22px;
+  }
+}
